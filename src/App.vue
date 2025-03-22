@@ -7,7 +7,7 @@ const count = ref(0);
 function increment() {
   count.value++;
 }
-
+//********************************************************************************
 // Propiedades computadas
 const author = reactive({
   name: "John Doe",
@@ -21,9 +21,12 @@ const author = reactive({
 const publishedBooksMessage = computed(() => {
   return author.books.length > 0 ? "Yes" : "No";
 });
-
+//********************************************************************************
+// Renderización Condicional
 const awesome = ref(true);
 
+//********************************************************************************
+// Lista de la lista
 const parentMessage = ref('Parent')
 const items = ref([{ message: 'Foo' }, { message: 'Bar' }])
 
@@ -41,6 +44,7 @@ const sets = ref([
 function even(numbers) {
   return numbers.filter((number) => number % 2 === 0)
 }
+//********************************************************************************
 </script>
 
 <template>
