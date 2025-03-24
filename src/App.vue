@@ -4,48 +4,8 @@ import { ref, reactive, computed, watch } from "vue";
 import ReactividadFundamental from "./components/ReactividadFundamental.vue";
 import ParteComputada from "./components/ParteComputada.vue";
 import Condicional from "./components/Condicional.vue";
-// Lista de la lista
-const parentMessage = ref("Parent");
-const items = ref([{ message: "Foo" }, { message: "Bar" }]);
-
-const myObject = reactive({
-  title: "How to do lists in Vue",
-  author: "Jane Doe",
-  publishedAt: "2016-04-10",
-});
-
-const sets = ref([
-  [1, 2, 3, 4, 5],
-  [6, 7, 8, 9, 10],
-]);
-
-function even(numbers) {
-  return numbers.filter((number) => number % 2 === 0);
-}
-//********************************************************************************
-// Evento
-const counter = ref(0);
-const name = ref("Vue.js");
-
-function greet(event) {
-  alert(`Hello ${name.value}!`);
-  // `event` is the native DOM event
-  if (event) {
-    alert(event.target.tagName);
-  }
-}
-
-function say(message) {
-  alert(message);
-}
-
-function warn(message, event) {
-  // now we have access to the native event
-  if (event) {
-    event.preventDefault();
-  }
-  alert(message);
-}
+import Listas from "./components/Listas.vue";
+import Eventos from "./components/Eventos.vue";
 //********************************************************************************
 // Encuadernaciones de entrada
 const message = ref("");
@@ -107,20 +67,7 @@ watch(question, async (newQuestion, oldQuestion) => {
     </div>
 
     <!-- Lista de la lista -->
-    <div class="section">
-      <h2>Lista de la Lista</h2>
-      <li v-for="(item, index) in items">
-        {{ parentMessage }} - {{ index }} - {{ item.message }}
-      </li>
-      <ul>
-        <li v-for="(value, key, index) in myObject">
-          {{ index }}. {{ key }}: {{ value }}
-        </li>
-      </ul>
-      <ul v-for="numbers in sets">
-        <li v-for="n in even(numbers)">{{ n }}</li>
-      </ul>
-    </div>
+    <Listas />
 
     <!-- Separador -->
     <div class="separator">
@@ -128,25 +75,7 @@ watch(question, async (newQuestion, oldQuestion) => {
     </div>
 
     <!-- Eventos -->
-    <div class="section">
-      <h2>Eventos</h2>
-      <button @click="counter++">Add 1</button>
-      <p>The button above has been clicked {{ counter }} times.</p>
-      <p>Manecles de método</p>
-      <button @click="greet">Greet</button>
-      <p>Llamando a Métodos en Manecles en Línea</p>
-      <button @click="say('hello')">Say hello</button>
-      <button @click="say('bye')">Say bye</button>
-      <p>Acceder a evento argumentación en Manecles Inline</p>
-      <!-- using $event special variable -->
-      <button @click="warn('Form cannot be submitted yet.', $event)">
-        Submit
-      </button>
-      <!-- using inline arrow function -->
-      <button @click="(event) => warn('Form cannot be submitted yet.', event)">
-        Submit
-      </button>
-    </div>
+    <Eventos />
 
     <!-- Separador -->
     <div class="separator">
