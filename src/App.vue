@@ -1,31 +1,9 @@
 <script setup>
 //Parte de reactividad del curso
 import { ref, reactive, computed, watch } from "vue";
-
-const count = ref(0);
-
-function increment() {
-  count.value++;
-}
-//********************************************************************************
-// Propiedades computadas
-const author = reactive({
-  name: "John Doe",
-  books: [
-    "Vue 2 - Advanced Guide",
-    "Vue 3 - Basic Guide",
-    "Vue 4 - The Mystery",
-  ],
-});
-
-const publishedBooksMessage = computed(() => {
-  return author.books.length > 0 ? "Yes" : "No";
-});
-//********************************************************************************
-// Renderización Condicional
-const awesome = ref(true);
-
-//********************************************************************************
+import ReactividadFundamental from "./components/ReactividadFundamental.vue";
+import ParteComputada from "./components/ParteComputada.vue";
+import Condicional from "./components/Condicional.vue";
 // Lista de la lista
 const parentMessage = ref("Parent");
 const items = ref([{ message: "Foo" }, { message: "Bar" }]);
@@ -105,25 +83,15 @@ watch(question, async (newQuestion, oldQuestion) => {
     <h1>Hola Mundo</h1>
 
     <!-- Parte Reactiva -->
-    <div class="section">
-      <h2>Parte Reactiva</h2>
-      <p>Botón para Incrementar:</p>
-      <button @click="increment" class="button">
-        {{ count }}
-      </button>
-    </div>
-
+     <ReactividadFundamental />
+  
     <!-- Separador -->
     <div class="separator">
       <span>&#x2193;</span>
     </div>
 
     <!-- Parte Computada -->
-    <div class="section">
-      <h2>Propiedades Computadas</h2>
-      <p>Has published books:</p>
-      <span>{{ publishedBooksMessage }}</span>
-    </div>
+    <ParteComputada />
 
     <!-- Separador -->
     <div class="separator">
@@ -131,12 +99,7 @@ watch(question, async (newQuestion, oldQuestion) => {
     </div>
 
     <!-- Renderización Condicional -->
-    <div class="section">
-      <h2>Renderización Condicional</h2>
-      <button @click="awesome = !awesome" class="button">Toggle</button>
-      <h1 v-if="awesome">Vue is awesome!</h1>
-      <h1 v-else>Oh no 😢</h1>
-    </div>
+    <Condicional />
 
     <!-- Separador -->
     <div class="separator">
@@ -275,17 +238,4 @@ select[multiple] {
   color: #666;
 }
 
-.button {
-  padding: 10px 20px;
-  border: none;
-  background-color: #42b883;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.button:hover {
-  background-color: #38a169;
-}
 </style>
